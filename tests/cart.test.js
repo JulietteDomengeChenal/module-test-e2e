@@ -1,4 +1,4 @@
-const timeout = 15000;
+const timeout = 10000;
 
 // Test des fonctionnalités de gestion du panier
 describe("Cart features", () => {
@@ -6,11 +6,21 @@ describe("Cart features", () => {
 
     test('add to cart', async () => {
         await page.goto(process.env.TESTED_WEBSITE);
-        await page.waitForSelector('my_login_selector');
-        await page.type('my_login_selector', process.env.TEST_LOGIN);
-        await page.type('my_password_selector', process.env.TEST_PASSWORD);
+        await page.waitForSelector('#user-name');
+        await page.type('#user-name', process.env.TEST_LOGIN);
+        await page.type('#password', process.env.TEST_PASSWORD);
 
         // à compléter
+        await page.click('#login-button');
+        await page.waitForSelector('#inventory_container');
+        await page.click('#add-to-cart-sauce-labs-backpack');
+
+        await page.waitForSelector('#shopping_cart_container');
+        await page.click('.shopping_cart_link');
+
+        await page.waitForSelector('#cart_contents_container');
+        const html = await page.$eval('body', e => e.innerHTML);
+        expect(html).toContain("Sauce Labs Backpack");
 
     }, timeout);
 
