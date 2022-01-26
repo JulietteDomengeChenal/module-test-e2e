@@ -12,7 +12,7 @@ describe("Tests basiques", () => {
         await page.waitForSelector('body');
         // récupérer le contenu de l'élément <body>
         const html = await page.$eval('body', e => e.innerHTML);
-        // vérifier que dans cet élément Body on trouve "Polr du campus"
+        // vérifier que dans cet élément Body on trouve "Password for all users"
         await page.screenshot({path: './tests/img/login_screen.png'});
         expect(html).toContain("Password for all users")
     }, timeout);
