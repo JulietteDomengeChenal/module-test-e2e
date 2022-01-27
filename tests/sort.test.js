@@ -1,4 +1,4 @@
-const timeout = 10000;
+const timeout = 15000;
 
 
 describe("Auth features", () => {
@@ -9,6 +9,7 @@ describe("Auth features", () => {
         await page.waitForSelector('#user-name');
         await page.type('#user-name', process.env.TEST_LOGIN);
         await page.type('#password', process.env.TEST_PASSWORD);
+        await page.click('#login-button');
 
         // à compléter
         await page.click('#header_container > div.header_secondary_container > div.right_component > span > select');
@@ -33,7 +34,7 @@ describe("Auth features", () => {
                 isSorted = false
             }
         }
-        console.log(array);
+        //console.log(array);
         await page.screenshot({path: './tests/img/tri2.png'});
         expect(isSorted).toBe(true)
 

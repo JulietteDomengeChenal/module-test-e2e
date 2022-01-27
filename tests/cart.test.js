@@ -1,4 +1,4 @@
-const timeout = 15000;
+const timeout = 20000;
 
 // Test des fonctionnalités de gestion du panier
 describe("Cart features", () => {
@@ -9,9 +9,9 @@ describe("Cart features", () => {
         await page.waitForSelector('#user-name');
         await page.type('#user-name', process.env.TEST_LOGIN);
         await page.type('#password', process.env.TEST_PASSWORD);
+        await page.click('#login-button');
 
         // à compléter
-        await page.click('#login-button');
         await page.waitForSelector('#inventory_container');
         await page.click('#add-to-cart-sauce-labs-backpack');
 
